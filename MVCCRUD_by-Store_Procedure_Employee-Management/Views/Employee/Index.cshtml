@@ -1,0 +1,37 @@
+﻿@model MVCCRUD_by_Store_Procedure_Employee_Management.Models.Employee
+@using (Html.BeginForm("Index", "Employee", FormMethod.Post))
+{
+    @Html.Label("Enter Eno");
+    @Html.TextBoxFor(Model => Model.Eno);
+    <br>
+    @Html.Label("Enter Ename");
+    @Html.TextBoxFor(Model => Model.Ename);
+    <br>
+    @Html.Label("Enter Salary");
+    @Html.TextBoxFor(Model => Model.Salary);
+    <br>
+    <input type="submit" value="Save" name="b1" />
+    <input type="submit" value="Update" name="b1" />
+    <br>
+    <table border="0">
+        <tr>
+            <th>Eno</th>
+            <th>Ename</th>
+            <th>Salary</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+        @foreach (var item in TempData["ie"] as List<MVCCRUD_by_Store_Procedure_Employee_Management.Models.Employee>)
+        {
+            <tr>
+                <td>@item.Eno</td>
+                <td>@item.Ename</td>
+                <td>@item.Salary</td>
+                <td>@Html.ActionLink("Delete", "Delete", new { id = @item.Eno })</td>
+                <td>@Html.ActionLink("Edit", "Edit", new { id = @item.Eno })</td>
+
+            </tr>
+        }
+    </table>
+
+}
